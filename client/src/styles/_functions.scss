@@ -1,0 +1,27 @@
+@function font-size($val) {
+    @if(map-has-key($map: $font-sizes, $key: $val)){
+        $value: map-get($map: $font-sizes, $key: $val);
+        @return $value;
+    }
+
+
+    @error 'Brak klucza o nazwie #{$val}';
+}
+
+@function line-height($val) {
+    @if(map-has-key($map: $line-heights, $key: $val)){
+        $value: map-get($map: $line-heights, $key: $val);
+        @return $value;
+    }
+
+    @error 'Brak klucza o nazwie #{$val}';
+}
+
+@function offset($val) {
+    @if(map-has-key($map: $offsets, $key: $val)){
+        $value: map-get($map: $offsets, $key: $val);
+        @return $value;
+    }
+
+    @error 'Brak klucza o nazwie #{$val}';
+}

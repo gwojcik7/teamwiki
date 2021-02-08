@@ -1,0 +1,12 @@
+@import "styles/helpers.scss";
+
+.badge {
+    color: $white;
+    background: $primary;
+    border-radius: 50%;
+    font-size: font-size(6);
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5;
+    display: inline-block;
+}

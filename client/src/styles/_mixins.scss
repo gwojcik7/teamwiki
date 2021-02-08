@@ -1,0 +1,93 @@
+$breakpoints-to: (
+  xs: 575.98px,
+  sm: 767.98px,
+  md: 991.98px,
+  lg: 1199.98px,
+  xl: 1529.99px
+);
+
+$breakpoints-from: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1530px
+);
+
+
+@mixin media-up($size) {
+    @if(map-has-key($map: $breakpoints-from, $key: $size)) {
+        $breakpoint: map-get($map: $breakpoints-from, $key: $size);
+        @media (min-width: $breakpoint) {
+            @content;
+        }
+    } @else {
+        @error 'Podano błędny zakres';
+    }
+}
+
+@mixin media-down($size) {
+    @if(map-has-key($map: $breakpoints-to, $key: $size)) {
+        $breakpoint: map-get($map: $breakpoints-to, $key: $size);
+        @media (max-width: $breakpoint) {
+            @content;
+        }
+    } @else {
+        @error 'Podano błędny zakres';
+    }
+}
+
+@mixin media-between($from, $to) {
+    @if(map-has-key($map: $breakpoints-from, $key: $from) and map-has-key($map: $breakpoints-from, $key: $to)) {
+        $breakpoint-from: map-get($map: $breakpoints-from, $key: $from);
+        $breakpoint-to: map-get($map: $breakpoints-from, $key: $to) - 0.02px;
+        @media (min-width: $breakpoint-from) and (max-width: $breakpoint-to) {
+            @content;
+        }
+    } @else {
+        @error 'Podano błędny zakres';
+    }
+}
+
+@mixin media-only($size) {
+    @if($size == 'xs') {
+        $breakpoint: map-get($map: $breakpoints-to, $key: $size);
+        @media (max-width: $breakpoint) {
+            @content;
+        }
+    } @else if($size == 'xl') {
+        $breakpoint: map-get($map: $breakpoints-from, $key: $size);
+        @media (min-width: $breakpoint) {
+            @content;
+        }
+    } @else {
+        @if(map-has-key($map: $breakpoints-from, $key: $size) and map-has-key($map: $breakpoints-to, $key: $size)) {
+            $breakpoint-from: map-get($map: $breakpoints-from, $key: $size);
+            $breakpoint-to: map-get($map: $breakpoints-to, $key: $size);
+            @media (min-width: $breakpoint-from) and (max-width: $breakpoint-to){
+                @content;
+            }
+        } @else {
+            @warn 'Podano błędny zakres';
+        }
+    }
+
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+        @content;
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}

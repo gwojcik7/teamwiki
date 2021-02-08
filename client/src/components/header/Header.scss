@@ -1,0 +1,110 @@
+@import 'styles/helpers';
+.header {
+    color: $white;
+    background: $black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    > .container {
+        display: grid;
+        grid-template-columns: 200px auto auto;
+        align-items: center;
+        > div {
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+    }
+    &__middle {
+        padding-left: 1em;
+        padding-right: 1em;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        justify-content: space-between;
+        border-width: 0 1px;
+        border-style: solid;
+        border-color: rgba($white, 10%);
+    }
+    &__right {
+        display: flex;
+        align-items: center;
+    }
+    &__brand {
+        font: {
+            size: font-size(2);
+            weight: bold;
+        }
+        letter-spacing: 2px;
+        color: currentColor;
+    }
+    &__nav {
+        ul {
+            display: inline-flex;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            &:first-child {
+                margin-left: -1em;
+            }
+        }
+        a {
+            padding-left: 1em;
+            padding-right: 1em;
+            color: $white;
+            font-weight: bold;
+        }
+    }
+    &__search {
+        display: flex;
+        input {
+            width: 100%;
+            background: transparent;
+            border-width: 1px 0 1px 1px;
+            border-style: solid;
+            border-color: rgba($white, 10%);
+            padding: 0.5em;
+        }
+        button {
+            background-color: transparent;
+            border-width: 1px 1px 1px 0;
+            border-color: rgba($white, 10%);
+            border-style: solid;
+            img {
+                width: 1em;
+            }
+        }
+    }
+    &__user {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        padding-left: 1em;
+        padding-right: 1em;
+        color: $white;
+        border-right: 1px solid rgba($white, 0.1);
+        .user {
+            &__avatar {
+                img {
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            &__firstname {
+                margin-right: 0.25em;
+            }
+        }
+    }
+    &__notifications {
+        padding-left: 1em;
+        button {
+            background: transparent;
+            border: none;
+        }
+        img {
+            width: 1em;
+        }
+    }
+}
